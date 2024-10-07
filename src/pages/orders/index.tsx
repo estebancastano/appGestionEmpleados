@@ -1,9 +1,12 @@
-import OrdersTable from '@/src/components/organism/Orders';
+import React from 'react';
+import Orders from '@/src/components/organism/Orders';
 
-export default function Orders() {
+const Index = () => {
   return (
-    <div className='grid w-full'>
-      <OrdersTable />
+    <div>
+      <Orders />
     </div>
   );
-}
+};
+
+export default Index;

@@ -1,3 +1,6 @@
+import React from 'react';
+import Link from 'next/link';
+import { signOut } from 'next-auth/react';
 import {
   CircleUser,
   Home,
@@ -23,7 +26,6 @@ import {
 } from '@/src/components/ui/dropdown-menu';
 import { Input } from '@/src/components/ui/input';
 import { Sheet, SheetContent, SheetTrigger } from '@/src/components/ui/sheet';
-import Link from 'next/link';
 
 const Index = () => {
   return (
@@ -37,19 +39,19 @@ const Index = () => {
         </SheetTrigger>
         <SheetContent side='left' className='flex flex-col'>
           <nav className='grid gap-2 text-lg font-medium'>
-            <Link href='#' className='flex items-center gap-2 text-lg font-semibold'>
+            <Link href='/' className='flex items-center gap-2 text-lg font-semibold'>
               <Package2 className='h-6 w-6' />
-              <span className='sr-only'>Acme Inc</span>
+              <span className='sr-only'>Virtual Inventarios</span>
             </Link>
             <Link
-              href='#'
+              href='/'
               className='mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground'
             >
               <Home className='h-5 w-5' />
               Dashboard
             </Link>
             <Link
-              href='#'
+              href='/orders'
               className='mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground'
             >
               <ShoppingCart className='h-5 w-5' />
@@ -59,39 +61,40 @@ const Index = () => {
               </Badge>
             </Link>
             <Link
-              href='#'
+              href='/products'
               className='mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground'
             >
               <Package className='h-5 w-5' />
               Products
             </Link>
             <Link
-              href='#'
+              href='/customers'
               className='mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground'
             >
               <Users className='h-5 w-5' />
               Customers
             </Link>
             <Link
-              href='#'
+              href='/users'
               className='mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground'
             >
               <LineChart className='h-5 w-5' />
-              Analytics
+              Users
             </Link>
           </nav>
           <div className='mt-auto'>
-            <Card>
-              <CardHeader className='p-2 pt-0 md:p-4 flex flex-row gap-5 justify-center items-center'>
+            <Card x-chunk='dashboard-02-chunk-0'>
+              <CardHeader className='flex flex-row gap-5 justify-center items-center p-2 pt-0 md:p-4'>
+                <div>
+                  <CardTitle>Juan Pablo</CardTitle>
+                  <CardTitle>Admin</CardTitle>
+                </div>
                 <Avatar>
-                  <AvatarImage src='https://github.com/shadcn.png' alt='@shadcn' />
+                  <AvatarImage src='https://github.com/shadcn.png' />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
-                <div className='flex flex-col items-center justify-center'>
-                  <CardTitle>Juan Pablo</CardTitle>
-                  <CardContent className='p-2 pt-0 md:p-4 md:pt-0'>Admin</CardContent>
-                </div>
               </CardHeader>
+              <CardContent className=' flex justify-center items-center p-2 pt-0 md:p-4 md:pt-0'></CardContent>
             </Card>
           </div>
         </SheetContent>
@@ -121,7 +124,13 @@ const Index = () => {
           <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => {
+              signOut();
+            }}
+          >
+            Logout
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>
